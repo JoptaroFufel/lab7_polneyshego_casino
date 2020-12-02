@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <exception>
 #include<time.h>
@@ -18,9 +18,9 @@ public:
 	Goods() :id(0), name("Blank "), cost(0) { }
 	Goods(string t_name, double _cost, int id) :name(t_name), cost(_cost), id(id) { }
 	~Goods() { }
-	bool operator< (const Goods& c) { return id < c.id; }
-	bool operator> (const Goods& c) { return id > c.id; }
-	bool operator== (const Goods& c) { return id == c.id && name == c.name && cost == c.cost; }
+	bool operator< (const Goods& co) { return id < co.id; }
+	bool operator> (const Goods& co) { return id > co.id; }
+	bool operator== (const Goods& co) { return id == co.id && name == co.name && cost == co.cost; }
 	friend ostream& operator<< (ostream& out, const Goods& c)
 	{
 		out << c.id << ' ' << c.name << ' ' << c.cost << '\n'; return out;
@@ -259,17 +259,17 @@ int main() {
 	}
 	cout << "\nInserting\n";
 	try {
-		stac.push(Goods("Stas", 213, 1));
+		stac.push(Goods("Stas", 213, 10));
 		stac.show();
-		stac.push(Goods("Danila", 454, 2));
+		stac.push(Goods("Danila", 454, 45));
 		stac.show();
-		stac.push(Goods("Anzelika", 645, 3));
+		stac.push(Goods("Anzelika", 645, 6));
 		stac.show();
-		stac.push(Goods("Kek", 9841, 4));
+		stac.push(Goods("Kek", 9841, 7));
 		stac.show();
-		stac.push(Goods("Max", 123, 5));
+		stac.push(Goods("Max", 123, 9));
 		stac.show();
-		stac.push(Goods("Xim", 784, 6));
+		stac.push(Goods("Xim", 784, 4));
 		stac.show();
 	}
 	catch (Exception ex) { cerr << ex; }
@@ -278,14 +278,14 @@ int main() {
 		stac.show();
 		stac.show(stac.begin());
 		try {
-			cout << "\nErase Kek Beba 5\n";
-			stac.erase(stac.find(Goods("Kek", 9841, 4)));
+			cout << "\nErase Kek\n";
+			stac.erase(stac.find(Goods("Kek", 9841, 7)));
 		}
 		catch (Exception ex) { cerr << ex; };
 		stac.show();
 		try {
-			auto dan = stac.find(Goods("Max", 123, 5));
-			auto anz = stac.find(Goods("Anzelika", 645, 3));
+			auto dan = stac.find(Goods("Danila", 454, 45));
+			auto anz = stac.find(Goods("Anzelika", 645, 6));
 			stac.swap(dan, anz);
 		}
 		catch (Exception ex) { cerr << ex; };
